@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Login - Simple Login System{% endblock %}
+
+{% block content %}
+<h1>Simple Login System</h1>
+
+<div class="info">
+    <h3>Demo Users:</h3>
+    <ul>
+        <li>admin / admin123</li>
+        <li>alice / password</li>
+        <li>bob / secret</li>
+    </ul>
+    <p><strong>Try SQL injection:</strong> admin'-- or ' OR '1'='1' --</p>
+</div>
+
+<form method="POST">
+    <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+    </div>
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+    </div>
+    <button type="submit">Login</button>
+</form>
+
+{% if error %}
+    <div class="error">{{ error }}</div>
+{% endif %}
+
+<hr>
+<h2>Search Users</h2>
+<form method="GET" action="/search">
+    <div class="form-group">
+        <label for="search">Search by username:</label>
+        <input type="text" id="search" name="q" placeholder="Enter username...">
+    </div>
+    <button type="submit">Search</button>
+</form>
+{% endblock %}

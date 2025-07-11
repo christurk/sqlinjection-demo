@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Search Results - Simple Login System{% endblock %}
+
+{% block content %}
+<h1>Search Results</h1>
+
+<div class="info">
+    <p><strong>Search Query:</strong> {{ search_query }}</p>
+    <p><strong>SQL Query:</strong> <code>{{ sql_query }}</code></p>
+</div>
+
+{% if error %}
+    <div class="error">
+        <h3>Database Error:</h3>
+        <pre>{{ error }}</pre>
+    </div>
+{% endif %}
+
+{% if results %}
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in results %}
+            <tr>
+                <td>{{ user[0] }}</td>
+                <td>{{ user[1] }}</td>
+                <td>{{ user[3] }}</td>
+                <td>{{ user[4] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% elif not error %}
+    <p>No users found matching your search.</p>
+{% endif %}
+
+<p><a href="/">← Back to Login</a></p>
+{% endblock %}

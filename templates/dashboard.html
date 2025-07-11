@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Simple Login System{% endblock %}
+
+{% block content %}
+<h1>Welcome to Dashboard</h1>
+
+<div class="user-info">
+    <h3>Logged in as: {{ user.username }}</h3>
+    <p>Email: {{ user.email }}</p>
+    <p>Role: {{ user.role }}</p>
+</div>
+
+{% if user.role == 'admin' %}
+    <h2>All Users (Admin View)</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for u in all_users %}
+            <tr>
+                <td>{{ u[0] }}</td>
+                <td>{{ u[1] }}</td>
+                <td>{{ u[3] }}</td>
+                <td>{{ u[4] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
+<div class="logout">
+    <a href="/">← Back to Login</a>
+</div>
+{% endblock %}
